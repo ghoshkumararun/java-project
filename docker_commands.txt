@@ -216,11 +216,6 @@ Deploy war/ear to a container: user deploy to container plug-in in jenkins
 	-----------------------------------------------
 	
 	
-	AKIARRMNJGECDQXWW2XE
-	sdfON3EL+RfuyCkRQ8bOx+/8ScgnpquDNy0N8WsC
-
-	fDCt?lQp6Xhq
-	
 	ALTER USER root IDENTIFIED BY root;
 	
 	ALTER USER root IDENTIFIED BY root REPLACE fDCt?lQp6Xhq;
