@@ -1,0 +1,325 @@
+yum install docker
+docker --version
+docker info
+service docker start
+docker info
+docker images
+
+docker run hello-world
+
+docker images
+
+
+docker pull mysql:5.7
+
+docker images
+
+
+docker run --help
+
+
+docker ps
+
+
+docker stop abcd******
+
+docker ps 
+
+docker ps -a
+
+
+docker ps -a
+
+docker rm pid1 pid2 pid 3
+
+
+docker images
+
+docker rmi imageid1 imageid2
+
+----
+
+docker run -i -t -d nginx
+
+docker run -itd nginx
+
+docker run -idt --name=mycontainer nginx
+docker stop mycontainer
+docker ps
+docker start mycontainer
+docker ps
+
+docker run -i -d -t -p 80:80 nginx
+ 
+docker run -idt --name=mycontainer -p 8000:80 nginx
+
+docker restart mycontainer
+docker pause mycontainer
+docker ps
+docker unpause mycontainer
+
+
+docker images
+docker pull ubuntu
+docker run -dit ubuntu
+docker ps
+docker exec -it container_id bash
+apt-get update (for ubuntu)
+apt-get install apache2
+
+apt-get update
+apt-get install apache2
+service apache2 status
+
+service apache2 start
+
+docker commit 6456c18d4121 mywebserver
+
+docket history ubuntu
+--------------------------------
+
+docker network ls
+docker network inspect bridge
+
+docker network create demonewnetwork --subnet=172.19.0.0/16
+docker network ls
+docker run --name webserver5 --net demonewnetwork --ip 172.19.0.2 -h web.bharath.com -p 82:80 -ti ubuntu /bin/bash
+hostname
+
+Ctrl + P + Q
+
+docker attach webserver5
+
+docker network disconnect demonewnetwork webserver5
+
+docker inspect webserver5
+
+docker network connect bridge webserver5
+
+docker inspect webserver5
+
+----------------dockerfile------------------
+
+FROM COPY ENV RUN CMD EXPOSE
+
+FROM ubuntu
+COPY aap.jar /server/deploy
+ENV JAVA_HOME = /opt/java
+RUN yum install apache2
+CMD python --version
+EXPOSE 8080
+
+--------------------------------------------
+
+ubuntu apt-get
+centos yum
+
+--------------------------------------------
+
+vi dockerfile
+   20  cat dockerfile
+   21  vi index.html
+   22  cat index.html
+   23  vi index.html
+   24  cat index.html
+   25  docker build -t my-webserver .
+	
+	// -t tagname . present folder
+	// 
+	//dockerfile content below 7 lines
+	
+	FROM centos
+	RUN yum install -y httpd
+	ADD index.html /var/www/html
+	CMD apacheclt -D FOREGROUND
+	EXPOSE 80
+	MAINTAINER bharath
+	ENV myenv myval
+
+
+--------------------------------------------
+
+docker images
+docker history 	my-webserver
+
+--------------------------------------------
+
+docker images
+docker tag my-webserver ghoshkumararun/my-webserver
+docker images
+docker login
+docker push ghoshkumararun/my-webserver
+
+--------------------------------------------
+
+docker run -d -p 6666:3306 --name=docker-mysql --env="MYSQL_ROOT_PASSWORD=test1234" --env="MYSQL_DATABASE=mydb" mysql
+
+-----
+
+FROM java:8
+ADD couponservice-0.0.1-SNAPSHOT.jar couponservice-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","couponservice-0.0.1-SNAPSHOT.jar"]
+
+-------------------------
+
+***** docker rmi $(docker images -a -d)
+
+--------------------
+
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+  sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+  
+  yum install jenkins
+  
+-----------------------
+
+ yum install java-1.8.0-openjdk
+    2  sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+    3  sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+    4  yum install jenkins
+    6  service jenkins start
+    7  cat /var/lib/jenkins/secrets/initialAdminPassword
+	
+------------------------------------------------	
+	
+yum install maven
+mvn --version
+
+------------------------------------------------
+
+yum install maven
+   12  mvn --version
+   13  mvn archetype:generate -DgroupId=com.bharath -DartifactId=java-project -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+   14  mvn archetype:generate -DgroupId=com.bharath -DartifactId=java-web-project -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+   15  ls
+   16  cd java-project/
+   17  mvn clean install
+
+--------------------------------------------------
+
+Tomcat Installation and Integration:
+
+yum install tomcat
+yum install tomcat-webapps tomcat-admin-webapps 
+vi /usr/share/tomcat/conf/tomcat-users.xml
+Uncomment Admin roles and user and Add:
+<user username="deployer" password="deployer" roles="manager-script" />
+Deploy war/ear to a container: user deploy to container plug-in in jenkins
+**/java-web-project.war
+
+
+---------------------------------------------------
+
+	ssh-keygen
+	
+	-----------------------------------------------
+	
+	
+	AKIARRMNJGECDQXWW2XE
+	sdfON3EL+RfuyCkRQ8bOx+/8ScgnpquDNy0N8WsC
+
+	fDCt?lQp6Xhq
+	
+	ALTER USER root IDENTIFIED BY root;
+	
+	ALTER USER root IDENTIFIED BY root REPLACE fDCt?lQp6Xhq;
+	
+	--------------------------------------------
+	
+	ls
+   85  service mysql status
+   86  yum install mysql
+   87  service mysql start
+   88  service mariadb status
+   89  service mariadn start
+   90  service mariadb start
+   91  yum install mysql-server
+   92  service mysqld start
+   93  yum install mysql-server
+   94  yum update
+   95  sudo wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+   96  sudo yum localinstall mysql57-community-release-el7-11.noarch.rpm
+   97  sudo yum install mysql-community-server
+   98  sudo systemctl start mysqld.service
+   99  sudo grep 'temporary password' /var/log/mysqld.log
+  100  mysql -u root -p
+  101  history
+  102  service mysqld status
+  103  mysql_secure_installation
+  104  mysql_secure_installation
+  105  history
+
+  ----------------------------------------------------------
+	
+  	
+Setup the mysql container:
+
+docker run -d -p 6666:3306 --name=docker-mysql --env="MYSQL_ROOT_PASSWORD=test1234" --env="MYSQL_DATABASE=reservation" mysql
+
+docker exec -it docker-mysql bash
+
+# mysql -uroot -p 
+test1234
+
+mysql> show databases;
+
+mysql> show tables; 
+
+
+Another Terminal:
+
+docker exec -i docker-mysql mysql -uroot -ptest1234 reservation <flightdb.sql
+
+
+
+Application Container and testing:
+
+docker build -f Dockerfile -t reservation_app .
+
+docker run -t --link docker-mysql:mysql -p 10555:8080 reservation_app
+
+http://localhost:10555/flightservices/flights
+
+The --link command will allow the reservation_app container to use the port of MySQL
+
+--------------------------------------------------------
+
+dockerfile
+
+FROM java:8
+VOLUME /tmp
+EXPOSE 10555
+ADD target\flightservices-0.0.1-SNAPSHOT.jar flightservices-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","flightservices-0.0.1-SNAPSHOT.jar"]
+
+--------------------------------------------------------
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
