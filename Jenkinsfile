@@ -1,5 +1,5 @@
 pipeline{
-    stgaes{
+    stages{
         stage("Build")
         {
             steps{
